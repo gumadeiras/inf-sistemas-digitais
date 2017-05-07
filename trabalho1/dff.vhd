@@ -15,12 +15,15 @@ entity dff is
 end entity;
 
 architecture behaviour of dff is
+  signal aux_Q : std_logic_vector(bits-1 downto 0);
 begin
     process (clk, rst) begin
         if rst = '0' then
-            Q <= (others => '0');
+            aux_Q <= (others => '0');
         elsif rising_edge(clk) then
-            Q <= D;
+            aux_Q <= D;
         end if;
     end process;
+
+   Q <= aux_Q;
 end behaviour;
