@@ -5,14 +5,17 @@ use IEEE.STD_LOGIC_ARITH.all;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity counter is
+  generic(
+    bits : integer := 1 --default is 1 bit
+    );
   port (
     clk, rst, updown : in std_logic;
-    out_counter : out std_logic_vector(4 downto 0)
+    out_counter : out std_logic_vector(bits-1 downto 0)
     );
 end counter;
 
 architecture behaviour of counter is
-  signal aux_out_counter : std_logic_vector(4 downto 0);
+  signal aux_out_counter : std_logic_vector(bits-1 downto 0);
 begin
 
   updown_counter : process(clk, rst)

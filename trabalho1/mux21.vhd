@@ -12,7 +12,7 @@ entity mux21 is
     A0 : in std_logic_vector(bits0-1 downto 0);
     A1 : in std_logic_vector(bits1-1 downto 0);
     selector : in std_logic;
-    mux_out : out std_logic_vector
+    mux_out : out std_logic_vector(bits1-1 downto 0)
     );
 end mux21;
 

@@ -17,13 +17,13 @@ architecture behaviour of ckt is
   signal out_segdisplay : std_logic_vector(6 downto 0); -- segment display output
 begin
 
-updown_counter1 : entity work.counter port map(clk, rst, updown1, out_counter1);
-updown_counter2 : entity work.counter port map(clk, rst, updown2, out_counter2);
+updown_counter1 : entity work.counter generic map(4) port map(clk, rst, updown1, out_counter1);
+updown_counter2 : entity work.counter generic map(4) port map(clk, rst, updown2, out_counter2);
 
 -- caixa 1 : subtractor coregen
 sub_logic : process(out_counter1, out_counter2)
 begin
-    sub : out_subtractor <= out_counter1 - out_counter2;
+    sub_logic : out_subtractor <= out_counter1 - out_counter2;
 end process;
 
 -- caixa 2 : adder(data in, counter) 4 bits
@@ -38,8 +38,8 @@ mux21_add_mux : entity work.mux21 generic map(4,4) port map(out_adder, out_subtr
 register_mux : entity work.dff generic map(4) port map(clk, rst, out_mux, out_r_mux);
 
 -- bcd converter, 14 bits
-bcdconv : entity work.bcdconverter generic map(4) port map(out_r_mux, d0, d1, d2);
-display : entity work.segdisplay port map(rst, d0, out_segdisplay);
+-- bcdconv : entity work.bcdconverter generic map(4) port map(out_r_mux, d0, d1, d2);
+display : entity work.segdisplay port map(rst, out_r_mux, out_segdisplay);
 register_data_out : entity work.dff generic map(7) port map(clk, rst, out_segdisplay, data_out);
 
 end behaviour;
