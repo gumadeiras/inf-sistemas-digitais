@@ -13,7 +13,7 @@ begin
   digit_display : process (reset, bcd)
   begin
     if reset = '0' then
-      segment <="0000001"; -- display 0 on reset
+      segment <="0000001"; -- 0
     else
       case bcd is
         when "0000" => segment <= "0000001";  -- '0'

@@ -1,12 +1,13 @@
 library IEEE;
-use IEEE.NUMERIC_STD.ALL;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.all;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use ieee.numeric_std.all;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
 
 entity ckt is
   port(
     clk, rst, updown1, updown2, selector : in std_logic;
+    counter1, counter2, sum, sub : out std_logic_vector(3 downto 0); -- for debugging only
     data_out : out std_logic_vector(6 downto 0)
     );
 end ckt;
@@ -20,18 +21,17 @@ begin
 updown_counter1 : entity work.counter generic map(4) port map(clk, rst, updown1, out_counter1);
 updown_counter2 : entity work.counter generic map(4) port map(clk, rst, updown2, out_counter2);
 
--- caixa 1 : subtractor coregen
-sub_logic : process(out_counter1, out_counter2)
-begin
-    sub_logic : out_subtractor <= out_counter1 - out_counter2;
-end process;
+  counter1 <= out_counter1; --debug signal
+  counter2 <= out_counter2; --debug signal
 
--- caixa 2 : adder(data in, counter) 4 bits
---adder : entity work.addsub generic map(4) port map (out_r_counter, out_r_data_in, '0', out_adder, overflow);
-adder_logic : process(out_counter1, out_counter2)
-begin
-    adder : out_adder <= out_counter1 + out_counter2;
-end process;
+-- caixa 1 : adder coregen
+  coregen_adder : entity work.adder port map (out_counter1, out_counter2, clk, not rst, out_adder);
+  sum <= out_adder; --debug signal
+
+
+-- caixa 2 : subtractor
+  sub_logic : out_subtractor <= out_counter1 - out_counter2;
+  sub <= out_subtractor; --debug signal
 
 -- 2:1 mux : 0 = adder - 1 = subtractor
 mux21_add_mux : entity work.mux21 generic map(4,4) port map(out_adder, out_subtractor, selector, out_mux);
@@ -39,6 +39,7 @@ register_mux : entity work.dff generic map(4) port map(clk, rst, out_mux, out_r_
 
 -- bcd converter, 14 bits
 -- bcdconv : entity work.bcdconverter generic map(4) port map(out_r_mux, d0, d1, d2);
+-- os valores ja estao em 4 bits, nao e necessario fazer conversao, apenas um case para mostrar o valor hexa
 display : entity work.segdisplay port map(rst, out_r_mux, out_segdisplay);
 register_data_out : entity work.dff generic map(7) port map(clk, rst, out_segdisplay, data_out);
 
