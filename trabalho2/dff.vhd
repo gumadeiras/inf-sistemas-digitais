@@ -24,7 +24,7 @@ begin
           if load = '1' then
             aux_Q <= D;
           else
-            aux_Q <= (others => '0');
+            aux_Q <= aux_Q;
           end if ;
         end if;
     end process;

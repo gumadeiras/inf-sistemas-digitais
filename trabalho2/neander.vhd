@@ -64,12 +64,12 @@ architecture behaviour of neander is
                       s_read_mem,
                       s_read_mem_cycle,
                       s_load_opcode,
+                      s_opcode_cycle,
                       s_decoder,
                       s_control,
                       s_control_clk,
                       s_control_0,
-                      s_control_1,
-                      s_control_1_cycle,
+                      s_control_0_cycle,
                       s_control_2,
                       s_halt);
   signal s_current, s_next : state_type;
@@ -102,8 +102,8 @@ begin
     ena   => ena,
     wea   => wea,
     addra => addra,
-    dina  => dina,
-    douta => mem_DATA_IN,
+    dina  => AC,
+    douta => DATA,
     clkb  => clkb,
     rstb  => rstb,
     enb   => enb,
@@ -114,14 +114,16 @@ begin
   );
   clka  <= clk;
   clkb  <= clk;
+  rsta  <= rst;
+  rstb  <= rst;
 
-  -- registers
-  program_counter : entity work.counter generic map(8) port map(clk, rst, carga_PC, increment_PC, DATA, PC);
   reg_acc         : entity work.dff generic map(8) port map(clk, rst, carga_AC, ULA, AC);
+  accumulator <= AC;
+  program_counter : entity work.counter generic map(8) port map(clk, rst, carga_PC, increment_PC, DATA, PC);
   reg_opcode      : entity work.dff generic map(8) port map(clk, rst, carga_RI, DATA, opcodeaux);
-  reg_data_mem    : entity work.dff generic map(8) port map(clk, rst, carga_RDM, mem_DATA_IN, DATA);
-  reg_end_mem     : entity work.dff generic map(8) port map(clk, rst, carga_REM, mux_out, mem_END);
-  mux21           : entity work.mux21 generic map(8,8) port map(PC, DATA, sel_mux, mux_out);
+  --reg_data_mem    : entity work.dff generic map(8) port map(clk, rst, carga_RDM, mem_DATA_IN, DATA);
+  --reg_end_mem     : entity work.dff generic map(8) port map(clk, rst, carga_REM, mux_out, mem_END);
+  mux21           : entity work.mux21 generic map(8,8) port map(PC, DATA, sel_mux, addra);
   opcode <= opcodeaux(7 downto 4);
   ula_nz <= ula_negative&ula_zero;
   flags_nz        : entity work.dff generic map(2) port map(clk, rst, carga_NZ, ula_nz, reg_NZ);
@@ -167,11 +169,11 @@ begin
   begin
 
     -- reset all control signals
-    carga_REM    <= '0';
+    --carga_REM    <= '0';
     carga_RI     <= '0';
     carga_NZ     <= '0';
     carga_AC     <= '0';
-    carga_RDM    <= '0';
+    --carga_RDM    <= '0';
     carga_PC     <= '0';
     increment_PC <= '0';
     selULA       <= "111";
@@ -180,29 +182,34 @@ begin
     web          <= "0";
     ena          <= '1';
     enb          <= '0';
-    addra        <= mem_END;
+    --addra        <= mem_END;
+    halt         <= '0';
 
 
     case s_current is
       when s_pc_mux =>
         sel_mux   <= '0';
-        carga_REM <= '0';
+        --carga_REM <= '0';
         s_next    <= s_read_mem;
 
       when s_read_mem =>
-        ena          <= '1';
         wea          <= "0";
-        carga_REM    <= '1';
-        addra        <= PC;
+        --carga_REM    <= '1';
+        --addra        <= PC;
+        ena          <= '1';
         increment_PC <= '1';
         s_next       <= s_read_mem_cycle;
 
       when s_read_mem_cycle =>
-        carga_RDM    <= '1';
+        --carga_RDM    <= '1';
+        --carga_RI <= '1';
         s_next <= s_load_opcode;
 
       when s_load_opcode =>
         carga_RI <= '1';
+        s_next   <= s_opcode_cycle;
+
+      when s_opcode_cycle =>
         s_next   <= s_decoder;
 
       when s_decoder =>
@@ -307,11 +314,10 @@ begin
           end case ;
 
       when s_control_clk =>
-      s_next <= s_control_0; -- wait for clk cycle
+        s_next <= s_control_0; -- wait for clk cycle
 
       when s_control_0 =>
-          s_next <= s_control_1;
-
+          s_next <= s_control_0_cycle;
           case opcode is
             when "0001" => -- STA
               wea     <= "1";
@@ -359,7 +365,7 @@ begin
           end case ;
 
 
-      when s_control_1_cycle =>
+      when s_control_0_cycle =>
         s_next <= s_control_2;
 
       when s_control_2 =>
