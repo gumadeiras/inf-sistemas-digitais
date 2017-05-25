@@ -26,7 +26,7 @@ architecture behaviour of neander is
   signal ULA          : std_logic_vector(7 downto 0);
   signal ula_negative : std_logic;
   signal ula_zero     : std_logic;
-  signal ula_nz		 : std_logic_vector(1 downto 0);
+  signal ula_nz       : std_logic_vector(1 downto 0);
   signal reg_NZ       : std_logic_vector(1 downto 0);
 
 -- control signals
@@ -70,6 +70,7 @@ architecture behaviour of neander is
                       s_control_clk,
                       s_control_0,
                       s_control_0_cycle,
+                      s_control_02,
                       s_control_2,
                       s_halt);
   signal s_current, s_next : state_type;
@@ -366,7 +367,23 @@ begin
 
 
       when s_control_0_cycle =>
-        s_next <= s_control_2;
+        --case opcode is
+        --    when "0010" => -- LDA
+        --      selULA <= "100";
+        --      carga_NZ <= '1';
+        --      carga_AC <= '1';
+        --    when "0011" => -- ADD
+        --      selULA <= "000";
+        --      carga_NZ <= '1';
+        --      carga_AC <= '1';
+        --    when others =>
+        --    s_next <= s_control_2;
+
+        --end case ;
+        s_next <= s_control_02;
+
+      when s_control_02 =>
+              s_next <= s_control_2;
 
       when s_control_2 =>
               s_next <= s_pc_mux;
@@ -376,12 +393,10 @@ begin
               selULA <= "100";
               carga_NZ <= '1';
               carga_AC <= '1';
-
             when "0011" => -- ADD
               selULA <= "000";
               carga_NZ <= '1';
               carga_AC <= '1';
-
             when "0100" => -- OR
               selULA <= "010";
               carga_NZ <= '1';
