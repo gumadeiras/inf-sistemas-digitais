@@ -17,6 +17,7 @@ architecture behaviour of neander is
 -- bus
   signal PC           : std_logic_vector(7 downto 0);
   signal AC           : std_logic_vector(7 downto 0);
+  signal aux_AC       : std_logic_vector(7 downto 0);
   signal DATA         : std_logic_vector(7 downto 0);
   signal mem_END      : std_logic_vector(7 downto 0);
   signal mem_DATA_IN  : std_logic_vector(7 downto 0);
@@ -58,6 +59,14 @@ architecture behaviour of neander is
   signal dinb  : std_logic_vector(7 downto 0);
   signal doutb : std_logic_vector(7 downto 0);
 
+  -- multiplication signals
+  signal mult_ULA    : std_logic;
+  signal mult_MSB    : std_logic;
+  signal mult_MUX    : std_logic;
+  signal mult_ULA    : std_logic;
+  signal mult_result : std_logic_vector(15 downto 0);
+
+
 -- FSM definition
   type state_type is (
                       s_pc_mux,
@@ -72,7 +81,12 @@ architecture behaviour of neander is
                       s_control_0_cycle,
                       s_control_02,
                       s_control_2,
-                      s_halt);
+                      s_halt,
+                      s_mult0,
+                      s_mult1,
+                      s_mult2,
+                      s_mult3
+                      );
   signal s_current, s_next : state_type;
 
   component dpram
@@ -118,13 +132,10 @@ begin
   rsta  <= rst;
   rstb  <= rst;
 
-  reg_acc         : entity work.dff generic map(8) port map(clk, rst, carga_AC, ULA, AC);
-  accumulator <= AC;
   program_counter : entity work.counter generic map(8) port map(clk, rst, carga_PC, increment_PC, DATA, PC);
   reg_opcode      : entity work.dff generic map(8) port map(clk, rst, carga_RI, DATA, opcodeaux);
   --reg_data_mem    : entity work.dff generic map(8) port map(clk, rst, carga_RDM, mem_DATA_IN, DATA);
   --reg_end_mem     : entity work.dff generic map(8) port map(clk, rst, carga_REM, mux_out, mem_END);
-  mux21           : entity work.mux21 generic map(8,8) port map(PC, DATA, sel_mux, addra);
   opcode <= opcodeaux(7 downto 4);
   ula_nz <= ula_negative&ula_zero;
   flags_nz        : entity work.dff generic map(2) port map(clk, rst, carga_NZ, ula_nz, reg_NZ);
@@ -136,8 +147,16 @@ begin
                        AC or DATA   when "010",
                        not AC       when "011",
                        DATA         when "100",
-                       AC * DATA    when "101", -- NÃO CABE, ARRUMAR
+                       AC xor DATA  when "110", -- NÃO CABE, ARRUMAR
                     (others => '0') when others;
+  if selULA = "111" then
+    if mult_ULA = 0 then
+      mult_result <= ACC * DADO;
+    elsif mult_ULA = 1 then
+      ULA <= mult_result(7 downto 0);
+    end if ;
+
+  end if ;
 
   ULA_NZ_SIGNAL : process(ULA)
   begin
@@ -151,6 +170,38 @@ begin
       ula_negative <= '1';
     else
       ula_negative <= '0';
+    end if;
+  end process;
+
+  --reg_acc         : entity work.dff generic map(8) port map(clk, rst, carga_AC, ULA, AC);
+  process (clk, rst) begin
+      if rst = '1' then
+          aux_AC <= (others => '0');
+      elsif rising_edge(clk) then
+        if mult_MSB = '1' then
+          aux_AC <= mult_result(15 downto 8);
+        else
+            if carga_AC = '1' then
+              aux_AC <= ULA;
+            else
+              aux_AC <= aux_AC;
+            end if ;
+        end if;
+      end if;
+  end process;
+  AC <= aux_AC;
+  accumulator <= AC;
+
+  --mux21           : entity work.mux21 generic map(8,8) port map(PC, DATA, sel_mux, addra);
+  process(clk, rst)
+  begin
+    if mult_MUX = '1' then
+      addra <= "11111010"; -- endereço 250
+    else
+      with sel_mux select
+              addra <= PC when '0',
+                     DATA when '1',
+          (others => '0') when others;
     end if;
   end process;
 
@@ -185,6 +236,7 @@ begin
     enb          <= '0';
     --addra        <= mem_END;
     halt         <= '0';
+    mult_ULA     <= '0';
 
 
     case s_current is
@@ -226,6 +278,12 @@ begin
               sel_mux <= '0';
 
             when "0011" => -- ADD
+              sel_mux <= '0';
+
+            when "1110" => -- XOR
+              sel_mux <= '0';
+
+            when "1100" => -- MULT
               sel_mux <= '0';
 
             when "0100" => -- OR
@@ -284,6 +342,16 @@ begin
               ena          <= '1';
               increment_PC <= '1';
 
+            when "1110" => -- XOR
+              wea          <= "0";
+              ena          <= '1';
+              increment_PC <= '1';
+
+            when "1100" => -- MULT
+              wea          <= "0";
+              ena          <= '1';
+              increment_PC <= '1';
+
             when "0100" => -- OR
               wea          <= "0";
               ena          <= '1';
@@ -331,6 +399,16 @@ begin
               sel_mux <= '1';
 
             when "0011" => -- ADD
+              wea     <= "0";
+              ena     <= '1';
+              sel_mux <= '1';
+
+            when "1110" => -- XOR
+              wea     <= "0";
+              ena     <= '1';
+              sel_mux <= '1';
+
+            when "1100" => -- MULT
               wea     <= "0";
               ena     <= '1';
               sel_mux <= '1';
@@ -393,10 +471,22 @@ begin
               selULA <= "100";
               carga_NZ <= '1';
               carga_AC <= '1';
+
             when "0011" => -- ADD
               selULA <= "000";
               carga_NZ <= '1';
               carga_AC <= '1';
+
+            when "1110" => -- XOR
+              selULA <= "110";
+              carga_NZ <= '1';
+              carga_AC <= '1';
+
+            when "1100" => -- MULT
+              selULA <= "111";
+              mult_ULA <= '0';
+              s_next <= s_mult0;
+
             when "0100" => -- OR
               selULA <= "010";
               carga_NZ <= '1';
@@ -428,6 +518,31 @@ begin
         enb          <= '0';
 
         s_next <= s_halt;
+
+      when s_mult0 =>
+        selULA   <= "111";
+        carga_NZ <= '1';
+        mult_ULA <= '1';
+        s_next   <= s_mult1;
+
+      when s_mult1 =>
+        mult_MSB <= '1';
+        mult_MUX <= '1';
+        s_next   <= s_mult2;
+
+      when s_mult2 =>
+        mult_MSB <= '1';
+        mult_MUX <= '1';
+        ena      <= '1';
+        wea      <= "1";
+        s_next   <= s_mult3;
+
+      when s_mult3 =>
+        selULA   <= "111";
+        carga_NZ <= '1';
+        mult_ULA <= '1';
+        carga_AC <= '1';
+        s_next   <= s_pc_mux;
 
       when others =>
         s_next <= s_pc_mux;
