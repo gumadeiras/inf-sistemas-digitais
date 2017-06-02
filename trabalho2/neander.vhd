@@ -63,7 +63,6 @@ architecture behaviour of neander is
   signal mult_ULA    : std_logic;
   signal mult_MSB    : std_logic;
   signal mult_MUX    : std_logic;
-  signal mult_ULA    : std_logic;
   signal mult_result : std_logic_vector(15 downto 0);
 
 
@@ -141,22 +140,45 @@ begin
   flags_nz        : entity work.dff generic map(2) port map(clk, rst, carga_NZ, ula_nz, reg_NZ);
 
   -- ULA
-  with selULA select
-                ULA <= AC + DATA    when "000",
-                       AC and DATA  when "001",
-                       AC or DATA   when "010",
-                       not AC       when "011",
-                       DATA         when "100",
-                       AC xor DATA  when "110", -- NÃO CABE, ARRUMAR
-                    (others => '0') when others;
-  if selULA = "111" then
-    if mult_ULA = 0 then
-      mult_result <= ACC * DADO;
-    elsif mult_ULA = 1 then
-      ULA <= mult_result(7 downto 0);
-    end if ;
+  --with selULA select
+  --              ULA <= AC + DATA    when "000",
+  --                     AC and DATA  when "001",
+  --                     AC or DATA   when "010",
+  --                     not AC       when "011",
+  --                     DATA         when "100",
+  --                     AC xor DATA  when "110",
+  --                  (others => '0') when others;
+  process(selULA)
+  begin
+    case selULA is
+      when "000" =>
+        ULA <= AC + DATA;
 
-  end if ;
+      when "001" =>
+        ULA <= AC and DATA;
+
+      when "010" =>
+        ULA <= AC or DATA;
+
+      when "011" =>
+        ULA <= not AC;
+
+      when "100" =>
+        ULA <= DATA;
+
+      when "110" =>
+        ULA <= AC xor DATA;
+
+      when "111" =>
+        if mult_ULA = '0' then
+          mult_result <= AC * DATA;
+        elsif mult_ULA = '1' then
+          ULA <= mult_result(7 downto 0);
+        end if;
+      when others =>
+        ULA <= (others => '0');
+    end case;
+  end process;
 
   ULA_NZ_SIGNAL : process(ULA)
   begin
@@ -189,7 +211,7 @@ begin
         end if;
       end if;
   end process;
-  AC <= aux_AC;
+  AC          <= aux_AC;
   accumulator <= AC;
 
   --mux21           : entity work.mux21 generic map(8,8) port map(PC, DATA, sel_mux, addra);
@@ -198,10 +220,14 @@ begin
     if mult_MUX = '1' then
       addra <= "11111010"; -- endereço 250
     else
-      with sel_mux select
-              addra <= PC when '0',
-                     DATA when '1',
-          (others => '0') when others;
+      case sel_mux is
+        when '0' =>
+              addra <= PC;
+        when '1' =>
+              addra <= DATA;
+        when others =>
+              addra <= (others => '0');
+      end case;
     end if;
   end process;
 
@@ -425,18 +451,18 @@ begin
 
             when "1000" => -- JMP
               carga_PC <= '1';
-              s_next <= s_pc_mux;
+              s_next   <= s_pc_mux;
 
             when "1001" => -- JN
               if reg_NZ(1) = '1' then
                 carga_PC <= '1';
-                s_next <= s_pc_mux;
+                s_next   <= s_pc_mux;
               end if ;
 
             when "1010" => -- JZ
               if reg_NZ(0) = '1' then
                 carga_PC <= '1';
-                s_next <= s_pc_mux;
+                s_next   <= s_pc_mux;
               end if ;
 
             when others =>
@@ -468,32 +494,32 @@ begin
 
           case opcode is
             when "0010" => -- LDA
-              selULA <= "100";
+              selULA   <= "100";
               carga_NZ <= '1';
               carga_AC <= '1';
 
             when "0011" => -- ADD
-              selULA <= "000";
+              selULA   <= "000";
               carga_NZ <= '1';
               carga_AC <= '1';
 
             when "1110" => -- XOR
-              selULA <= "110";
+              selULA   <= "110";
               carga_NZ <= '1';
               carga_AC <= '1';
 
             when "1100" => -- MULT
-              selULA <= "111";
+              selULA   <= "111";
               mult_ULA <= '0';
-              s_next <= s_mult0;
+              s_next   <= s_mult0;
 
             when "0100" => -- OR
-              selULA <= "010";
+              selULA   <= "010";
               carga_NZ <= '1';
               carga_AC <= '1';
 
             when "0101" => -- AND
-              selULA <= "001";
+              selULA   <= "001";
               carga_NZ <= '1';
               carga_AC <= '1';
 

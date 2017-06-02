@@ -12,20 +12,20 @@ architecture behav of segdisplay is
 begin
   digit_display : process (reset, bcd)
   begin
-    if reset = '0' then
+    if reset = '1' then
       segment <="0000001"; -- 0
     else
       case bcd is
-        when "0000" => segment <= "0000001";  -- '0'
-        when "0001" => segment <= "1001111";  -- '1'
-        when "0010" => segment <= "0010010";  -- '2'
-        when "0011" => segment <= "0000110";  -- '3'
-        when "0100" => segment <= "1001100";  -- '4'
-        when "0101" => segment <= "0100100";  -- '5'
-        when "0110" => segment <= "0100000";  -- '6'
-        when "0111" => segment <= "0001111";  -- '7'
+        when "0000" => segment <= "1000000";  -- '0'
+        when "0001" => segment <= "1111001";  -- '1'
+        when "0010" => segment <= "0100100";  -- '2'
+        when "0011" => segment <= "0110000";  -- '3'
+        when "0100" => segment <= "0011001";  -- '4'
+        when "0101" => segment <= "0010010";  -- '5'
+        when "0110" => segment <= "0000010";  -- '6'
+        when "0111" => segment <= "1111000";  -- '7'
         when "1000" => segment <= "0000000";  -- '8'
-        when "1001" => segment <= "0000100";  -- '9'
+        when "1001" => segment <= "0010000";  -- '9'
         when "1010" => segment <= "0010001";  -- A
         when "1011" => segment <= "1000001";  -- b
         when "1100" => segment <= "1100011";  -- C

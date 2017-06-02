@@ -10,7 +10,7 @@ ARCHITECTURE behavior OF TESTBENCH IS
 
     COMPONENT ckt
     PORT(
-    mclk, rst, button : in std_logic;
+    clk, rst, button : in std_logic;
     acc               : out std_logic_vector(7 downto 0);
     led               : out std_logic_vector(0 downto 0);
     an                : out std_logic_vector(3 downto 0);
@@ -37,7 +37,7 @@ BEGIN
 
 	-- Instantiate the Unit Under Test (UUT)
    uut: ckt PORT MAP (
-          mclk => clk,
+          clk => clk,
           rst => rst,
           button => button,
           acc => acc,
