@@ -2,7 +2,6 @@
 # To use it in a project:
 # - remove or comment the lines corresponding to unused pins
 # - rename the used signals according to the project
-
 # clock pin for Basys2 Board
 NET "clk" LOC = "B8"; # Bank = 0, Signal name = MCLK
 #NET "uclk" LOC = "M6"; # Bank = 2, Signal name = UCLK
@@ -19,10 +18,8 @@ NET "rst" CLOCK_DEDICATED_ROUTE = FALSE;
 #NET "led<2>" LOC = "P7" ; # Bank = 3, Signal name = LD2
 #NET "led<1>" LOC = "M11" ; # Bank = 2, Signal name = LD1
 NET "led<0>" LOC = "M5" ;  # Bank = 2, Signal name = LD0
-
 NET "button" LOC = "C11"; # Bank = 2, Signal name = BTN1
 NET "rst" LOC = "G12"; # Bank = 0, Signal name = BTN0
-
 # Pin assignment for DispCtl
 # Connected to Basys2 onBoard 7seg display
 NET "seg<0>" LOC = "L14"; # Bank = 1, Signal name = CA
@@ -33,15 +30,18 @@ NET "seg<4>" LOC = "P12"; # Bank = 2, Signal name = CE
 NET "seg<5>" LOC = "L13"; # Bank = 1, Signal name = CF
 NET "seg<6>" LOC = "M12"; # Bank = 1, Signal name = CG
 #NET "dp" LOC = "N13"; # Bank = 1, Signal name = DP
-
 NET "an<3>" LOC = "K14"; # Bank = 1, Signal name = AN3
 NET "an<2>" LOC = "M13"; # Bank = 1, Signal name = AN2
 NET "an<1>" LOC = "J12"; # Bank = 1, Signal name = AN1
 NET "an<0>" LOC = "F12"; # Bank = 1, Signal name = AN0
-
 # Pin assignment for SWs
 #NET "sw<4>" LOC = "G3";  # Bank = 3, Signal name = SW4
 #NET "sw<3>" LOC = "B4";  # Bank = 3, Signal name = SW3
 #NET "sw<2>" LOC = "K3";  # Bank = 3, Signal name = SW2
 #NET "sw<1>" LOC = "L3";  # Bank = 3, Signal name = SW1
 #NET "sw<0>" LOC = "P11";  # Bank = 2, Signal name = SW0
+#Created by Constraints Editor (xc3s100e-cp132-4) - 2017/06/02
+NET "clk" TNM_NET = clk;
+TIMESPEC TS_clk = PERIOD "clk" 20 ns HIGH 50%;
+OFFSET = IN 20 ns VALID 20 ns BEFORE "clk" RISING;
+OFFSET = OUT 20 ns AFTER "clk";

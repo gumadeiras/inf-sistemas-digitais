@@ -24,7 +24,7 @@ architecture behaviour of ckt is
   signal d0, d1, d2             : std_logic_vector(3 downto 0); -- bcd values
   signal digit0, digit1, digit2 : std_logic_vector(6 downto 0); -- bcd values
   signal temp, mclk             : std_logic;
-  signal counter                : unsigned(23 downto 0);
+  signal counter                : std_logic_vector(23 downto 0);
 
 
 begin
@@ -65,11 +65,11 @@ begin
     end if ;
     end process;
 
-  state_control : process(clk, rst)
+  state_control : process(mclk, rst)
   begin
     if rst = '1' then
       s_current <= s_d0;
-    elsif rising_edge(clk) then
+    elsif rising_edge(mclk) then
       s_current <= s_next;
     else
       s_current <= s_current;

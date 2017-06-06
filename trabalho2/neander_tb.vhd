@@ -54,7 +54,7 @@ BEGIN
    begin
       rst <= '1';
 
-      wait for 100 ns;
+      wait for 1 us;
 
 		rst <= '0';
 

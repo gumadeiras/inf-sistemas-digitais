@@ -31,7 +31,7 @@ ARCHITECTURE behavior OF TESTBENCH IS
    signal seg : std_logic_vector(6 downto 0);
 
    -- clk period definitions
-   constant clk_period : time := 10 ns;
+   constant clk_period : time := 20 ns;
 
 BEGIN
 
@@ -61,7 +61,7 @@ BEGIN
    begin
       rst <= '1';
 
-      wait for 100 ns;
+      wait for 10 ns;
 
 		rst <= '0';
 
