@@ -1,0 +1,4 @@
+vhdl work "ipcore_dir/mem.vhd"
+vhdl work "ipcore_dir/corediv.vhd"
+vhdl work "../ckt.vhd"
+vhdl work "ckt_tb.vhd"

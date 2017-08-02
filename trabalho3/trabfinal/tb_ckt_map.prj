@@ -1,0 +1,2 @@
+vhdl work "netgen/map/ckt_map.vhd"
+vhdl work "tb_ckt.vhd"

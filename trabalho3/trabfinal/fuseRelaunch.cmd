@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -o "V:/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/trabfinal/ckt_tb_isim_translate.exe" -prj "V:/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/trabfinal/ckt_tb_translate.prj" "work.ckt_tb" 

@@ -1,0 +1,570 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.08 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.08 secs
+ 
+--> Reading design: ckt.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "ckt.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "ckt"
+Output Format                      : NGC
+Target Device                      : xc3s100e-4-cp132
+
+---- Source Options
+Top Module Name                    : ckt
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+Cores Search Directories           : {"ipcore_dir"  }
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+WARNING:HDLParsers:3498 - No primary, secondary unit in the file "//mac/dropbox/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/trabfinal/ipcore_dir/corediv.vhd. Ignore this file from project file "V:/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/trabfinal/ckt_vhdl.prj".
+Compiling vhdl file "//mac/dropbox/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/trabfinal/ipcore_dir/mem.vhd" in Library work.
+Architecture mem_a of Entity mem is up to date.
+Compiling vhdl file "//mac/dropbox/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/ckt.vhd" in Library work.
+Entity <ckt> compiled.
+Entity <ckt> (Architecture <behaviour>) compiled.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <ckt> in library <work> (architecture <behaviour>).
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <ckt> in library <work> (Architecture <behaviour>).
+WARNING:Xst:2211 - "//mac/dropbox/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/ckt.vhd" line 121: Instantiating black box module <mem>.
+WARNING:Xst:2211 - "//mac/dropbox/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/ckt.vhd" line 130: Instantiating black box module <corediv>.
+INFO:Xst:2679 - Register <wea> in unit <ckt> has a constant value of 0 during circuit operation. The register is replaced by logic.
+Entity <ckt> analyzed. Unit <ckt> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <ckt>.
+    Related source file is "//mac/dropbox/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/ckt.vhd".
+WARNING:Xst:647 - Input <button> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <sub<21:11>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <rfd> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <next_addr> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <fractional> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <dina> is used but never assigned. This sourceless signal will be automatically connected to value 00000.
+    Found finite state machine <FSM_0> for signal <s_current>.
+    -----------------------------------------------------------------------
+    | States             | 25                                             |
+    | Transitions        | 30                                             |
+    | Inputs             | 3                                              |
+    | Outputs            | 18                                             |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | rst                       (positive)           |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | idle                                           |
+    | Power Up State     | idle                                           |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 9-bit register for signal <addra>.
+    Found 9-bit addsub for signal <addra$share0000> created at line 151.
+    Found 22-bit register for signal <avg>.
+    Found 5-bit register for signal <counter>.
+    Found 5-bit adder for signal <counter$share0000> created at line 151.
+    Found 5-bit register for signal <counterdiv>.
+    Found 5-bit adder for signal <counterdiv$share0000> created at line 151.
+    Found 32-bit up counter for signal <cycounter>.
+    Found 4-bit register for signal <deviation>.
+    Found 7-bit comparator greatequal for signal <deviation$cmp_ge0000> created at line 280.
+    Found 7-bit comparator less for signal <deviation$cmp_lt0000> created at line 272.
+    Found 7-bit comparator less for signal <deviation$cmp_lt0001> created at line 274.
+    Found 7-bit comparator less for signal <deviation$cmp_lt0002> created at line 276.
+    Found 7-bit comparator less for signal <deviation$cmp_lt0003> created at line 278.
+    Found 5-bit register for signal <dia>.
+    Found 22-bit register for signal <dividend>.
+    Found 5-bit register for signal <divisor>.
+    Found 4-bit up counter for signal <number_of_workers>.
+    Found 22-bit register for signal <power>.
+    Found 22-bit adder for signal <power$addsub0000> created at line 232.
+    Found 11-bit register for signal <shortsub>.
+    Found 22-bit register for signal <sub>.
+    Found 22-bit subtractor for signal <sub$addsub0000>.
+    Found 22-bit comparator greater for signal <sub$cmp_gt0000> created at line 214.
+    Found 22-bit register for signal <sub2>.
+    Found 11x11-bit multiplier for signal <sub2$mult0000> created at line 227.
+    Found 22-bit register for signal <sum>.
+    Found 22-bit adder for signal <sum$addsub0000> created at line 173.
+    Found 6-bit register for signal <variance>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   2 Counter(s).
+	inferred 182 D-type flip-flop(s).
+	inferred   6 Adder/Subtractor(s).
+	inferred   1 Multiplier(s).
+	inferred   6 Comparator(s).
+Unit <ckt> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Multipliers                                          : 1
+ 11x11-bit multiplier                                  : 1
+# Adders/Subtractors                                   : 6
+ 22-bit adder                                          : 2
+ 22-bit subtractor                                     : 1
+ 5-bit adder                                           : 2
+ 9-bit addsub                                          : 1
+# Counters                                             : 2
+ 32-bit up counter                                     : 1
+ 4-bit up counter                                      : 1
+# Registers                                            : 14
+ 11-bit register                                       : 1
+ 22-bit register                                       : 6
+ 4-bit register                                        : 1
+ 5-bit register                                        : 4
+ 6-bit register                                        : 1
+ 9-bit register                                        : 1
+# Comparators                                          : 6
+ 22-bit comparator greater                             : 1
+ 7-bit comparator greatequal                           : 1
+ 7-bit comparator less                                 : 4
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <s_current/FSM> on signal <s_current[1:25]> with one-hot encoding.
+---------------------------------------------------
+ State                | Encoding
+---------------------------------------------------
+ idle                 | 0000000000000000000000001
+ read_mem             | 0000000000000000000000010
+ read_mem_cycle       | 0000000000000000000000100
+ calc_mean            | 0000000000000000000001000
+ calc_mean_sum        | 0000000000000000000010000
+ calc_mean_avg        | 0000000000000000000100000
+ calc_mean_avg_cycle  | 0000000000000000001000000
+ calc_mean_avg_cycle2 | 0000000000000000100000000
+ calc_var0            | 0000000000000001000000000
+ calc_var01           | 0000000000000010000000000
+ calc_var11           | 0000000000000100000000000
+ calc_var2            | 0000000000001000000000000
+ calc_var21           | 0000000000010000000000000
+ calc_var211          | 0000000000100000000000000
+ calc_var22           | 0000000001000000000000000
+ calc_var3            | 0000000010000000000000000
+ calc_var4            | 0000000100000000000000000
+ calc_var4_cycle      | 0000010000000000000000000
+ calc_var5            | 0000001000000000000000000
+ calc_var6            | 0000100000000000000000000
+ calc_var             | 0000000000000000010000000
+ calc_dev             | 0001000000000000000000000
+ save_mem             | 0010000000000000000000000
+ save_mem_cycle       | 1000000000000000000000000
+ done                 | 0100000000000000000000000
+---------------------------------------------------
+Reading core <ipcore_dir/mem.ngc>.
+Reading core <ipcore_dir/corediv.ngc>.
+Loading core <mem> for timing and area information for instance <memoria>.
+Loading core <corediv> for timing and area information for instance <divisao>.
+WARNING:Xst:1710 - FF/Latch <divisor_0> (without init value) has a constant value of 0 in block <ckt>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <deviation_3> (without init value) has a constant value of 0 in block <ckt>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <sub_11> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_12> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_13> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_14> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_15> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_16> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_17> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_18> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_19> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_20> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_21> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2404 -  FFs/Latches <deviation<3:3>> (without init value) have a constant value of 0 in block <ckt>.
+
+Synthesizing (advanced) Unit <ckt>.
+	Found pipelined multiplier on signal <sub2_mult0000>:
+		- 1 pipeline level(s) found in a register on signal <shortsub>.
+		Pushing register(s) into the multiplier macro.
+
+		- 1 pipeline level(s) found in a register on signal <shortsub>.
+		Pushing register(s) into the multiplier macro.
+INFO:Xst:2385 - HDL ADVISOR - You can improve the performance of the multiplier Mmult_sub2_mult0000 by adding 1 register level(s).
+Unit <ckt> synthesized (advanced).
+WARNING:Xst:2677 - Node <sub_11> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_12> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_13> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_14> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_15> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_16> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_17> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_18> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_19> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_20> of sequential type is unconnected in block <ckt>.
+WARNING:Xst:2677 - Node <sub_21> of sequential type is unconnected in block <ckt>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 1
+# Multipliers                                          : 1
+ 11x11-bit registered multiplier                       : 1
+# Adders/Subtractors                                   : 6
+ 22-bit adder                                          : 2
+ 22-bit subtractor                                     : 1
+ 5-bit adder                                           : 2
+ 9-bit addsub                                          : 1
+# Counters                                             : 2
+ 32-bit up counter                                     : 1
+ 4-bit up counter                                      : 1
+# Registers                                            : 170
+ Flip-Flops                                            : 170
+# Comparators                                          : 6
+ 22-bit comparator greater                             : 1
+ 7-bit comparator greatequal                           : 1
+ 7-bit comparator less                                 : 4
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <divisor_0> (without init value) has a constant value of 0 in block <ckt>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <divisor_1> in Unit <ckt> is equivalent to the following 3 FFs/Latches, which will be removed : <divisor_2> <divisor_3> <divisor_4> 
+
+Optimizing unit <ckt> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block ckt, actual ratio is 65.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 226
+ Flip-Flops                                            : 226
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : ckt.ngr
+Top Level Output File Name         : ckt
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 51
+
+Cell Usage :
+# BELS                             : 1019
+#      GND                         : 3
+#      INV                         : 56
+#      LUT1                        : 52
+#      LUT2                        : 79
+#      LUT2_D                      : 1
+#      LUT2_L                      : 2
+#      LUT3                        : 127
+#      LUT3_D                      : 7
+#      LUT3_L                      : 1
+#      LUT4                        : 174
+#      LUT4_D                      : 5
+#      LUT4_L                      : 1
+#      MULT_AND                    : 11
+#      MUXCY                       : 239
+#      MUXF5                       : 24
+#      VCC                         : 3
+#      XORCY                       : 234
+# FlipFlops/Latches                : 1008
+#      FD                          : 782
+#      FDC                         : 42
+#      FDCE                        : 1
+#      FDE                         : 182
+#      FDP                         : 1
+# RAMS                             : 1
+#      RAMB16_S36_S36              : 1
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 49
+#      IBUF                        : 1
+#      OBUF                        : 48
+# MULTs                            : 1
+#      MULT18X18SIO                : 1
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s100ecp132-4 
+
+ Number of Slices:                      620  out of    960    64%  
+ Number of Slice Flip Flops:           1008  out of   1920    52%  
+ Number of 4 input LUTs:                505  out of   1920    26%  
+ Number of IOs:                          51
+ Number of bonded IOBs:                  50  out of     83    60%  
+ Number of BRAMs:                         1  out of      4    25%  
+ Number of MULT18X18SIOs:                 1  out of      4    25%  
+ Number of GCLKs:                         1  out of     24     4%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)                                                                                                         | Load  |
+-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------+-------+
+clk                                | BUFGP                                                                                                                         | 1010  |
+memoria/N1                         | NONE(memoria/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3_init.ram/dpram.dp36x36.ram)| 1     |
+-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-----------------------------------+------------------------+-------+
+Control Signal                     | Buffer(FF name)        | Load  |
+-----------------------------------+------------------------+-------+
+rst                                | IBUF                   | 44    |
+-----------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 9.223ns (Maximum Frequency: 108.425MHz)
+   Minimum input arrival time before clock: 5.224ns
+   Maximum output required time after clock: 4.571ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 9.223ns (frequency: 108.425MHz)
+  Total number of paths / destination ports: 9623 / 1072
+-------------------------------------------------------------------------
+Delay:               9.223ns (Levels of Logic = 25)
+  Source:            avg_0 (FF)
+  Destination:       sub_10 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: avg_0 to sub_10
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              4   0.591   0.762  avg_0 (avg_0)
+     LUT2:I0->O            1   0.704   0.000  Mcompar_sub_cmp_gt0000_lut<0> (Mcompar_sub_cmp_gt0000_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Mcompar_sub_cmp_gt0000_cy<0> (Mcompar_sub_cmp_gt0000_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_sub_cmp_gt0000_cy<1> (Mcompar_sub_cmp_gt0000_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_sub_cmp_gt0000_cy<2> (Mcompar_sub_cmp_gt0000_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_sub_cmp_gt0000_cy<3> (Mcompar_sub_cmp_gt0000_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_sub_cmp_gt0000_cy<4> (Mcompar_sub_cmp_gt0000_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_sub_cmp_gt0000_cy<5> (Mcompar_sub_cmp_gt0000_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_sub_cmp_gt0000_cy<6> (Mcompar_sub_cmp_gt0000_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_sub_cmp_gt0000_cy<7> (Mcompar_sub_cmp_gt0000_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_sub_cmp_gt0000_cy<8> (Mcompar_sub_cmp_gt0000_cy<8>)
+     MUXCY:CI->O           6   0.459   0.704  Mcompar_sub_cmp_gt0000_cy<9> (Mcompar_sub_cmp_gt0000_cy<9>)
+     LUT3:I2->O            1   0.704   0.424  sub_mux0001<0>1 (sub_mux0001<0>)
+     LUT4:I3->O            1   0.704   0.000  Msub_sub_addsub0000_lut<0> (Msub_sub_addsub0000_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Msub_sub_addsub0000_cy<0> (Msub_sub_addsub0000_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_sub_addsub0000_cy<1> (Msub_sub_addsub0000_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_sub_addsub0000_cy<2> (Msub_sub_addsub0000_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_sub_addsub0000_cy<3> (Msub_sub_addsub0000_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_sub_addsub0000_cy<4> (Msub_sub_addsub0000_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_sub_addsub0000_cy<5> (Msub_sub_addsub0000_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_sub_addsub0000_cy<6> (Msub_sub_addsub0000_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_sub_addsub0000_cy<7> (Msub_sub_addsub0000_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_sub_addsub0000_cy<8> (Msub_sub_addsub0000_cy<8>)
+     MUXCY:CI->O           0   0.059   0.000  Msub_sub_addsub0000_cy<9> (Msub_sub_addsub0000_cy<9>)
+     XORCY:CI->O           1   0.804   0.424  Msub_sub_addsub0000_xor<10> (sub_addsub0000<10>)
+     LUT4:I3->O            1   0.704   0.000  sub_mux0000<10>1 (sub_mux0000<10>)
+     FDE:D                     0.308          sub_10
+    ----------------------------------------
+    Total                      9.223ns (6.909ns logic, 2.314ns route)
+                                       (74.9% logic, 25.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 184 / 184
+-------------------------------------------------------------------------
+Offset:              5.224ns (Levels of Logic = 2)
+  Source:            rst (PAD)
+  Destination:       Mmult_sub2_mult0000 (MULT)
+  Destination Clock: clk rising
+
+  Data Path: rst to Mmult_sub2_mult0000
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            49   1.218   1.268  rst_IBUF (rst_IBUF)
+     INV:I->O            149   0.704   1.299  rst_inv1_INV_0 (rst_inv)
+     MULT18X18SIO:CEB          0.735          Mmult_sub2_mult0000
+    ----------------------------------------
+    Total                      5.224ns (2.657ns logic, 2.567ns route)
+                                       (50.9% logic, 49.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 47 / 47
+-------------------------------------------------------------------------
+Offset:              4.571ns (Levels of Logic = 1)
+  Source:            variance_5 (FF)
+  Destination:       variancia<5> (PAD)
+  Source Clock:      clk rising
+
+  Data Path: variance_5 to variancia<5>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              7   0.591   0.708  variance_5 (variance_5)
+     OBUF:I->O                 3.272          variancia_5_OBUF (variancia<5>)
+    ----------------------------------------
+    Total                      4.571ns (3.863ns logic, 0.708ns route)
+                                       (84.5% logic, 15.5% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 14.00 secs
+Total CPU time to Xst completion: 13.65 secs
+ 
+--> 
+
+Total memory usage is 288348 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   35 (   0 filtered)
+Number of infos    :    5 (   0 filtered)
+

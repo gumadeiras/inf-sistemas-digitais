@@ -1,0 +1,10 @@
+Command line:
+   ckt_tb_isim_translate.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  49265
+
+Sat Jul 29 11:27:56 2017
+
+
+ Elaboration Time: 0.842405 sec

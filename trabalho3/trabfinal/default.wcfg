@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="V:/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/trabfinal/ckt_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="ckt_tb" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_textio" />
+            <top_module name="std_logic_unsigned" />
+            <top_module name="textio" />
+            <top_module name="vcomponents" />
+            <top_module name="vital_primitives" />
+            <top_module name="vital_timing" />
+            <top_module name="vpkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="25" />
+   <wvobject fp_name="/ckt_tb/clk_period" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_period</obj_property>
+      <obj_property name="ObjectShortName">clk_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/rst" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/button" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">button</obj_property>
+      <obj_property name="ObjectShortName">button</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/acc" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">acc[7:0]</obj_property>
+      <obj_property name="ObjectShortName">acc[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/led" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">led[0:0]</obj_property>
+      <obj_property name="ObjectShortName">led[0:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/an" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">an[3:0]</obj_property>
+      <obj_property name="ObjectShortName">an[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/seg" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">seg[6:0]</obj_property>
+      <obj_property name="ObjectShortName">seg[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/s_current" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">s_current</obj_property>
+      <obj_property name="ObjectShortName">s_current</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/counter" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">counter[4:0]</obj_property>
+      <obj_property name="ObjectShortName">counter[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/addra" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">addra[8:0]</obj_property>
+      <obj_property name="ObjectShortName">addra[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/douta" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">douta[4:0]</obj_property>
+      <obj_property name="ObjectShortName">douta[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/dia" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dia[4:0]</obj_property>
+      <obj_property name="ObjectShortName">dia[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/sum" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">sum[21:0]</obj_property>
+      <obj_property name="ObjectShortName">sum[21:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/sub" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">sub[21:0]</obj_property>
+      <obj_property name="ObjectShortName">sub[21:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ffff00</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/sub2" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">sub2[21:0]</obj_property>
+      <obj_property name="ObjectShortName">sub2[21:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ffff00</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/power" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">power[21:0]</obj_property>
+      <obj_property name="ObjectShortName">power[21:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/avg" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">avg[21:0]</obj_property>
+      <obj_property name="ObjectShortName">avg[21:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/variance" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">variance[5:0]</obj_property>
+      <obj_property name="ObjectShortName">variance[5:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ffffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/deviation" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">deviation[3:0]</obj_property>
+      <obj_property name="ObjectShortName">deviation[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#0000ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/counterdiv" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">counterdiv[4:0]</obj_property>
+      <obj_property name="ObjectShortName">counterdiv[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/dividend" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dividend[21:0]</obj_property>
+      <obj_property name="ObjectShortName">dividend[21:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/divisor" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">divisor[4:0]</obj_property>
+      <obj_property name="ObjectShortName">divisor[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/quotient" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">quotient[21:0]</obj_property>
+      <obj_property name="ObjectShortName">quotient[21:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ckt_tb/uut/fractional" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">fractional[4:0]</obj_property>
+      <obj_property name="ObjectShortName">fractional[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>

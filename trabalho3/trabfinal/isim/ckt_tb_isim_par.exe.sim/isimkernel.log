@@ -1,0 +1,12 @@
+Command line:
+   ckt_tb_isim_par.exe
+     -simmode  gui
+     -sdfmax  /uut/=netgen/par/ckt_timesim.sdf
+     -sdfroot  /uut
+     -simrunnum  0
+     -socket  49262
+
+Sat Jul 29 11:17:14 2017
+
+
+ Elaboration Time: 3.65042 sec

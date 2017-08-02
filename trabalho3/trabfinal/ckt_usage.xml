@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<DeviceUsageSummary rev="4">
+<DesignStatistics TimeStamp="Sat Jul 29 11:14:23 2017"><group name="MiscellaneousStatistics">
+<item name="AGG_BONDED_IO" rev="4">
+<attrib name="value" value="50"/></item>
+<item name="AGG_IO" rev="4">
+<attrib name="value" value="50"/></item>
+<item name="AGG_SLICE" rev="4">
+<attrib name="value" value="708"/></item>
+<item name="NUM_4_INPUT_LUT" rev="4">
+<attrib name="value" value="485"/></item>
+<item name="NUM_BONDED_IBUF" rev="4">
+<attrib name="value" value="2"/></item>
+<item name="NUM_BONDED_IOB" rev="4">
+<attrib name="value" value="48"/></item>
+<item name="NUM_BUFGMUX" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="NUM_CYMUX" rev="4">
+<attrib name="value" value="239"/></item>
+<item name="NUM_LUT_RT" rev="4">
+<attrib name="value" value="51"/></item>
+<item name="NUM_MULT18X18SIO" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="NUM_MULTAND" rev="4">
+<attrib name="value" value="11"/></item>
+<item name="NUM_RAMB16" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="NUM_SLICEL" rev="4">
+<attrib name="value" value="708"/></item>
+<item name="NUM_SLICE_FF" rev="4">
+<attrib name="value" value="1008"/></item>
+<item name="NUM_XOR" rev="4">
+<attrib name="value" value="257"/></item>
+<item name="Xilinx Core blk_mem_gen_v7_3, Xilinx CORE Generator 14.7" rev="4">
+<attrib name="value" value="1"/></item>
+<item name="Xilinx Core div_gen_v3_0, Xilinx CORE Generator 14.7" rev="4">
+<attrib name="value" value="1"/></item>
+</group>
+</DesignStatistics>
+<CmdHistory>
+</CmdHistory>
+</DeviceUsageSummary>

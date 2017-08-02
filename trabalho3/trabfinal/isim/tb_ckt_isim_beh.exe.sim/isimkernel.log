@@ -1,0 +1,29 @@
+Command line:
+   tb_ckt_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  49252
+
+Sat Jul 29 11:01:54 2017
+
+
+ Elaboration Time: 0.124801 sec
+
+ Current Memory Usage: 697.307 Meg
+
+ Total Signals          : 6228
+ Total Nets             : 5084
+ Total Signal Drivers   : 2172
+ Total Blocks           : 1272
+ Total Primitive Blocks : 1262
+ Total Processes        : 2131
+ Total Traceable Variables  : 1369
+ Total Scalar Nets and Variables : 13395
+Total Line Count : 4127
+
+ Total Simulation Time: 2.10601 sec
+
+ Current Memory Usage: 1011.88 Meg
+
+Sat Jul 29 11:03:17 2017
+

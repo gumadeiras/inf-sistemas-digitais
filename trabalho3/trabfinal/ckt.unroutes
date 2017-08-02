@@ -1,0 +1,41 @@
+Release 14.7 - par P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Sat Jul 29 11:14:45 2017
+
+All signals are completely routed.
+
+WARNING:ParHelpers:361 - There are 29 loadless signals in this design. This design will cause Bitgen to issue DRC
+   warnings.
+
+   divisao/blk00000003/sig00000135
+   divisao/blk00000003/sig0000014f
+   divisao/blk00000003/sig00000169
+   divisao/blk00000003/sig00000183
+   divisao/blk00000003/sig0000019d
+   divisao/blk00000003/sig000001b7
+   divisao/blk00000003/sig000001d1
+   divisao/blk00000003/sig000001ec
+   divisao/blk00000003/sig00000207
+   divisao/blk00000003/sig00000222
+   divisao/blk00000003/sig0000023d
+   divisao/blk00000003/sig00000258
+   divisao/blk00000003/sig00000273
+   divisao/blk00000003/sig0000028e
+   divisao/blk00000003/sig000002a9
+   divisao/blk00000003/sig000002c3
+   divisao/blk00000003/sig000002dd
+   divisao/blk00000003/sig000002f7
+   divisao/blk00000003/sig00000311
+   divisao/blk00000003/sig0000032b
+   divisao/blk00000003/sig00000345
+   divisao/blk00000003/sig0000035f
+   divisao/blk00000003/sig000004f8
+   divisao/blk00000003/sig000004f9
+   divisao/fractional<0>
+   divisao/fractional<1>
+   divisao/fractional<2>
+   divisao/fractional<3>
+   divisao/fractional<4>
+
+

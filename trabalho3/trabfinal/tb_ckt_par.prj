@@ -1,0 +1,2 @@
+vhdl work "netgen/par/ckt_timesim.vhd"
+vhdl work "tb_ckt.vhd"

@@ -1,0 +1,3 @@
+work	"../ckt.vhd"
+work	"ipcore_dir/corediv.vhd"
+work	"ipcore_dir/mem.vhd"

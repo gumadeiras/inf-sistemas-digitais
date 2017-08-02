@@ -1,0 +1,31 @@
+Command line:
+   tb_ckt_isim_map.exe
+     -simmode  gui
+     -sdfmax  /uut/=netgen/map/ckt_map.sdf
+     -sdfroot  /uut
+     -simrunnum  0
+     -socket  49248
+
+Sat Jul 29 10:59:41 2017
+
+
+ Elaboration Time: 1.17001 sec
+
+ Current Memory Usage: 837.673 Meg
+
+ Total Signals          : 43939
+ Total Nets             : 29076
+ Total Signal Drivers   : 28552
+ Total Blocks           : 10841
+ Total Primitive Blocks : 6074
+ Total Processes        : 28554
+ Total Traceable Variables  : 65429
+ Total Scalar Nets and Variables : 191771
+Total Line Count : 92191
+
+ Total Simulation Time: 2.13721 sec
+
+ Current Memory Usage: 854.254 Meg
+
+Sat Jul 29 10:59:54 2017
+

@@ -1,0 +1,29 @@
+Command line:
+   tb_ckt_isim_translate.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  49250
+
+Sat Jul 29 11:00:18 2017
+
+
+ Elaboration Time: 0.592804 sec
+
+ Current Memory Usage: 775.008 Meg
+
+ Total Signals          : 29728
+ Total Nets             : 21710
+ Total Signal Drivers   : 21304
+ Total Blocks           : 5087
+ Total Primitive Blocks : 3187
+ Total Processes        : 21299
+ Total Traceable Variables  : 46020
+ Total Scalar Nets and Variables : 128479
+Total Line Count : 55218
+
+ Total Simulation Time: 0.795606 sec
+
+ Current Memory Usage: 1089.58 Meg
+
+Sat Jul 29 11:01:42 2017
+

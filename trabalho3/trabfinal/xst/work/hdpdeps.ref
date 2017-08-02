@@ -1,0 +1,16 @@
+V3 8
+FL "//mac/dropbox/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/ckt.vhd" 2017/07/29.11:18:20 P.20131013
+EN work/ckt 1501352845 \
+      FL "//mac/dropbox/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/ckt.vhd" \
+      PB ieee/NUMERIC_STD 1381692181 PB ieee/std_logic_1164 1381692176 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/ckt/behaviour 1501352846 \
+      FL "//mac/dropbox/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/ckt.vhd" \
+      EN work/ckt 1501352845 CP mem CP corediv
+FL "//mac/dropbox/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/trabfinal/ipcore_dir/mem.vhd" 2017/07/28.17:04:43 P.20131013
+EN work/mem 1501352843 \
+      FL "//mac/dropbox/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/trabfinal/ipcore_dir/mem.vhd" \
+      PB ieee/std_logic_1164 1381692176
+AR work/mem/mem_a 1501352844 \
+      FL "//mac/dropbox/documents/UFRGS/materias/atual/sistemas digitais/git/inf-sistemas-digitais/trabalho3/trabfinal/ipcore_dir/mem.vhd" \
+      EN work/mem 1501352843

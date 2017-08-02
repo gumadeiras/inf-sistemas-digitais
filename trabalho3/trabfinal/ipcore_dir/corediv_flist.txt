@@ -1,0 +1,13 @@
+# Output products list for <corediv>
+_xmsgs\pn_parser.xmsgs
+corediv.asy
+corediv.gise
+corediv.ngc
+corediv.sym
+corediv.vhd
+corediv.vho
+corediv.xco
+corediv.xise
+corediv_flist.txt
+corediv_readme.txt
+corediv_xmdf.tcl
